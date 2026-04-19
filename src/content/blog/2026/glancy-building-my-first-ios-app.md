@@ -26,7 +26,7 @@ The feature set at a glance:
 
 ## Architecture: Clean MVVM, No Session Leakage
 
-The app follows a straightforward MVVM pattern. `GlucoseViewModel` owns polling timers and publishes state. `LibreLinkUpGlucoseSource` handles all authentication and API calls, keeping session state well away from views. Views on both iPhone and Watch are presentation only — they receive data and fire events, nothing more.
+The app follows a straightforward MVVM pattern. `GlucoseViewModel` owns polling timers and publishes state. `LibreLinkUpGlucoseSource` handles all authentication and API calls, keeping session state well away from views. Views on both iPhone and Watch are presentation only. They receive data and fire events, nothing more.
 
 Settings are persisted via `@AppStorage` in an `AppSettings` observable object injected as an environment object throughout both targets. Changes propagate automatically with no manual binding wiring required.
 
@@ -36,7 +36,7 @@ Getting this architecture right was one of the things I was most pleased with, e
 
 ### Fixing the Vertical Centering
 
-When the graph is turned off, Glancy shows a hero layout: a large glucose number centred on screen with the trend arrow beneath it. Except it was not actually centred — it was sitting awkwardly near the top of the screen, off to the left by a tiny amount.
+When the graph is turned off, Glancy shows a hero layout: a large glucose number centred on screen with the trend arrow beneath it. Except it was not actually centred, it was sitting awkwardly near the top of the screen, off to the left by a tiny amount.
 
 The culprit was a misplaced `Spacer(minLength: 0)` combined with an unconditional `padding(.top, 24)` on the outer container. Both pushed content upward rather than distributing space evenly.
 
@@ -56,13 +56,13 @@ What it looks like:
 - If the reading is stale (older than 15 minutes), the number goes grey and a clock badge appears.
 - Tap anywhere to dismiss.
 
-The view forces dark mode and hides both the status bar and system overlays so nothing competes with the reading. Polling continues uninterrupted behind it — when you dismiss, the main view is fully up to date.
+The view forces dark mode and hides both the status bar and system overlays so nothing competes with the reading. Polling continues uninterrupted behind it when you dismiss, the main view is fully up to date.
 
 ### Focus Filter Integration
 
 Glance Mode can be triggered manually with a single tap on the eye icon in the toolbar, but the real power comes from iOS Focus filters.
 
-Using the `SetFocusFilterIntent` protocol from Apple's AppIntents framework (iOS 16+), Glancy registers itself as a Focus-aware app. The setup is a one-time job: Settings → Focus → Driving → App Filters → Glancy → Glance Mode: On. From that point on, activating the Driving Focus — whether manually or automatically when CarPlay connects — flips Glancy straight into Glance Mode. When Driving ends, it flips back.
+Using the `SetFocusFilterIntent` protocol from Apple's AppIntents framework (iOS 16+), Glancy registers itself as a Focus-aware app. The setup is a one-time job: Settings → Focus → Driving → App Filters → Glancy → Glance Mode: On. From that point on, activating the Driving Focus, whether manually or automatically when CarPlay connects, flips Glancy straight into Glance Mode. When Driving ends, it flips back.
 
 The implementation is intentionally thin: the intent writes one key to `UserDefaults`, which `@AppStorage` observes. No background tasks, no extra entitlements, no polling. iOS does all the heavy lifting.
 
@@ -77,8 +77,8 @@ There is still a solid backlog to work through:
 - HealthKit write support.
 - Advanced alerts (rapid rise/fall, time-in-range summaries).
 
-Glancy is a personal project, built entirely for the joy of it and the practical need behind it. For a first app, in a framework I was learning as I went, I am genuinely happy with where it has landed. There is still work to do — but the bones are solid and the thing that started it all, that one-glance-while-driving moment, actually works.
+Glancy is a personal project, built entirely for the joy of it and the practical need behind it. For a first app, in a framework I was learning as I went, I am genuinely happy with where it has landed. There is still work to do, but the bones are solid and the thing that started it all, that one-glance-while-driving moment, actually works.
 
-If any of this resonates — whether you are managing glucose yourself, building something similar, or just curious about SwiftUI architecture — feel free to [reach out](mailto:bryan@bryanleonardthompson.com).
+If any of this resonates — whether you are managing glucose yourself, building something similar, or just curious feel free to [reach out](mailto:bryan@bryanleonardthompson.com).
 
 *Built with SwiftUI · LibreLinkUp · AppIntents · WidgetKit*
