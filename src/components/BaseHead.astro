@@ -29,16 +29,17 @@ const criticalCSS = getPageCriticalCSS(Astro.url.pathname);
 <meta name="author" content={SITE.author} />
 
 <!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" href="/peter-avatar.jpg" />
-<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/favicon.svg" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <!-- PWA Meta Tags -->
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="steipete" />
-<meta name="application-name" content="Peter Steinberger" />
+<meta name="apple-mobile-web-app-title" content="bryanlt" />
+<meta name="application-name" content="Bryan Leonard Thompson" />
 <meta name="msapplication-TileColor" content="#006cac" />
 
 <!-- Primary Meta Tags -->
@@ -68,8 +69,8 @@ const criticalCSS = getPageCriticalCSS(Astro.url.pathname);
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@steipete" />
-<meta name="twitter:creator" content="@steipete" />
+<meta name="twitter:site" content="@bryanth0mpson" />
+<meta name="twitter:creator" content="@bryanth0mpson" />
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={new URL(image, Astro.site)} />

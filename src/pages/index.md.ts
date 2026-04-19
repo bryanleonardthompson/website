@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
-  const markdownContent = `# Peter Steinberger (@steipete)
+  const markdownContent = `# Bryan Leonard Thompson (@bryanth0mpson)
 
-AI-powered tools from Swift roots to web frontiers. Every commit lands on GitHub for you to fork & remix.
+I build apps, restore old Land Rovers, and take photographs. Based in Glasgow, Scotland.
 
 ## Navigation
 
@@ -14,13 +14,13 @@ AI-powered tools from Swift roots to web frontiers. Every commit lands on GitHub
 
 ## Links
 
-- Twitter: [@steipete](https://twitter.com/steipete)
-- GitHub: [@steipete](https://github.com/steipete)
-- Email: steipete@gmail.com
+- Twitter: [@bryanth0mpson](https://twitter.com/bryanth0mpson)
+- GitHub: [@bryanleonardthompson](https://github.com/bryanleonardthompson)
+- Email: bryan@bryanleonardthompson.com
 
 ---
 
-*This is the markdown-only version of steipete.me. Visit [steipete.me](https://steipete.me) for the full experience.*`;
+*This is the markdown-only version of bryanleonardthompson.com. Visit [bryanleonardthompson.com](https://bryanleonardthompson.com) for the full experience.*`;
 
   return new Response(markdownContent, {
     status: 200,
