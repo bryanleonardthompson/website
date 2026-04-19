@@ -46,18 +46,18 @@ export const criticalCSS = `
   
   /* Dark mode critical styles */
   :root {
-    --background: 253 253 253;
-    --foreground: 17 24 35;
-    --muted: 246 246 246;
-    --accent: 0 108 172;
-    --accent-dark: 255 107 1;
+    --background: 255 255 255;
+    --foreground: 17 17 17;
+    --muted: 224 224 224;
+    --accent: 17 17 17;
+    --accent-dark: 255 255 255;
   }
-  
+
   .dark {
-    --background: 18 24 27;
-    --foreground: 253 253 253;
-    --muted: 30 41 49;
-    --accent: 255 107 1;
+    --background: 15 15 15;
+    --foreground: 255 255 255;
+    --muted: 42 42 42;
+    --accent: 255 255 255;
   }
   
   /* Critical color classes */
