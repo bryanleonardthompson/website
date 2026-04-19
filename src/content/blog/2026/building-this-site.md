@@ -1,6 +1,6 @@
 ---
 title: "Building This Site on a 2008 MacBook"
-pubDateTime: 2026-04-20T00:00:00+01:00
+pubDatetime: 2026-04-20T00:00:00+01:00
 description: "How a frustrating afternoon trying to SSH into a Mac Mini and run local AI models ended with a 2008 MacBook doing everything we needed all along."
 tags: ["meta", "web", "ai"]
 ---
