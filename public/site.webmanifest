@@ -1,0 +1,16 @@
+{
+  "name": "Bryan Leonard Thompson",
+  "short_name": "Bryan Thompson",
+  "description": "I build apps, restore old Land Rovers, and take photographs. Based in Glasgow, Scotland.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "display": "browser",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}

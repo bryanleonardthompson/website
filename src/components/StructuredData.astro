@@ -1,0 +1,78 @@
+---
+export interface Props {
+  type: "BlogPosting" | "Person" | "WebSite";
+  data: any;
+}
+
+const { type, data } = Astro.props;
+
+let structuredData = {};
+
+if (type === "BlogPosting") {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: data.title,
+    description: data.description,
+    author: {
+      "@type": "Person",
+      name: data.author || "Bryan Leonard Thompson",
+      url: "https://bryanleonardthompson.com/about",
+    },
+    datePublished: data.pubDatetime.toISOString(),
+    dateModified: data.modDatetime?.toISOString() || data.pubDatetime.toISOString(),
+    publisher: {
+      "@type": "Person",
+      name: "Bryan Leonard Thompson",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://bryanleonardthompson.com/bryan-avatar.jpg",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": data.url,
+    },
+    image: data.ogImage || "https://bryanleonardthompson.com/bryan-avatar.jpg",
+    articleSection: data.tags?.[0] || "Technology",
+    keywords: data.tags?.join(", ") || "",
+    wordCount: data.wordCount,
+    timeRequired: data.readingTime,
+  };
+} else if (type === "Person") {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: "Bryan Leonard Thompson",
+    url: "https://bryanleonardthompson.com",
+    image: "https://bryanleonardthompson.com/bryan-avatar.jpg",
+    sameAs: [
+      "https://github.com/bryanleonardthompson",
+      "https://twitter.com/bryanth0mpson",
+    ],
+    jobTitle: "App developer",
+    description:
+      "I build apps, restore old Land Rovers, and take photographs. Based in Glasgow, Scotland.",
+  };
+} else if (type === "WebSite") {
+  structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Bryan Leonard Thompson",
+    url: "https://bryanleonardthompson.com",
+    description:
+      "I build apps, restore old Land Rovers, and take photographs. Based in Glasgow, Scotland.",
+    author: {
+      "@type": "Person",
+      name: "Bryan Leonard Thompson",
+    },
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://bryanleonardthompson.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
+    },
+  };
+}
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
