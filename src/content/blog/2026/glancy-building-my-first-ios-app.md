@@ -1,7 +1,7 @@
 ---
 title: "Glancy: Building My First iOS App"
 description: "How a frustration with clunky CGM apps turned into my first iOS build and a brand new Glance Mode built for the road."
-pubDatetime: 2026-04-19T12:00:00+01:00
+pubDatetime: 2026-04-19T00:01:00+01:00
 tags: ["ios", "swiftui", "cgm", "app-development"]
 ---
 
