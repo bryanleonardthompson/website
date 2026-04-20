@@ -17,7 +17,7 @@ That's not the shenanigans part. The shenanigans came later, when I started thin
 
 The problem, as I saw it, was AI. I've got used to having Claude around when I write. Not to write for me, but to know the context of a project, to help me shape how I talk about it, to catch the bits that don't quite land. How was I going to have that on a machine running Mac OS Lion?
 
-I went through options. Ollama running on the Mac Mini, SSH tunnels from the MacBook, shell scripts that would pipe my drafts through a terminal connection to a local model. We talked about Tailscale. We talked about the API. We talked about the cost of tokens and whether a local llama3 model would be good enough for anything beyond basic proofreading.
+I went through options. Ollama running on the Mac Mini, SSH tunnels from the MacBook, shell scripts that would pipe my drafts through a terminal connection to a local model. I turned to my good firend Claude and we talked about Tailscale. We talked about the API. We talked about the cost of tokens and whether a local llama3 model would be good enough for anything beyond basic proofreading.
 
 It was a good plan. Quite an elaborate one actually.
 
