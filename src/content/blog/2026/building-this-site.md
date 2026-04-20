@@ -11,13 +11,13 @@ I wanted to move away from WordPress. Not dramatically, not out of any great phi
 
 I'd seen Peter Steinberger's site when I was doing my AI research. Simple, fast, clean. When you click on his blog the menu doesn't reload the page, it just slides up and the content comes to meet you. That's all I've ever wanted. Something that felt like mine. Something so simple that the entire site and blog entries are less than 2mb. You read that right. The full repo is less than 2mb at the time of writing. Granted I have no photos or media posted yet, but I don't even know if I'll bother. If I ever need to reference or share photos I'll just... well I'll figure that out. I'll add that to my list of things to think about along with where I'm going to store all my notes now that I've freed them from Apple's ecosystem.
 
-So anyway we forked his repo.
+So anyway I forked his repo.
 
 That's not the shenanigans part. The shenanigans came later, when I started thinking about writing on my 2008 MacBook. My proper writing machine. The one I sit down with when I've stepped away from the desk and want to think.
 
 The problem, as I saw it, was AI. I've got used to having Claude around when I write. Not to write for me, but to know the context of a project, to help me shape how I talk about it, to catch the bits that don't quite land. How was I going to have that on a machine running Mac OS Lion?
 
-We went through options. Ollama running on the Mac Mini, SSH tunnels from the MacBook, shell scripts that would pipe my drafts through a terminal connection to a local model. We talked about Tailscale. We talked about the API. We talked about the cost of tokens and whether a local llama3 model would be good enough for anything beyond basic proofreading.
+I went through options. Ollama running on the Mac Mini, SSH tunnels from the MacBook, shell scripts that would pipe my drafts through a terminal connection to a local model. We talked about Tailscale. We talked about the API. We talked about the cost of tokens and whether a local llama3 model would be good enough for anything beyond basic proofreading.
 
 It was a good plan. Quite an elaborate one actually.
 
