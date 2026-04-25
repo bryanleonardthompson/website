@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple Pro Profiles — Archive</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #666666;
+      --border: #e5e5e5;
+      --tag-film-bg: #fff0f0;
+      --tag-film: #c0392b;
+      --tag-music-bg: #f0f4ff;
+      --tag-music: #2c5fb3;
+      --tag-photo-bg: #fffbe6;
+      --tag-photo: #8a6900;
+      --tag-design-bg: #f3f0ff;
+      --tag-design: #6b3fa0;
+      --tag-science-bg: #edfaf3;
+      --tag-science: #1a7a45;
+      --link: #1a1a1a;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f0f0f;
+        --text: #e8e8e8;
+        --muted: #999999;
+        --border: #2a2a2a;
+        --tag-film-bg: #2a1010;
+        --tag-film: #e07070;
+        --tag-music-bg: #101828;
+        --tag-music: #7aa0e0;
+        --tag-photo-bg: #1e1a00;
+        --tag-photo: #d4aa30;
+        --tag-design-bg: #16102a;
+        --tag-design: #b090e0;
+        --tag-science-bg: #0a1e14;
+        --tag-science: #50c880;
+        --link: #e8e8e8;
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1.25rem 4rem;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    header a {
+      font-size: 0.875rem;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    header a:hover { text-decoration: underline; }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 1rem 0 0.4rem;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filter-btn {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+
+    thead th {
+      text-align: left;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+
+    tbody tr:hover { background: color-mix(in srgb, var(--text) 4%, transparent); }
+
+    tbody tr.hidden { display: none; }
+
+    td {
+      padding: 0.65rem 0.75rem;
+      vertical-align: top;
+    }
+
+    td.name { font-weight: 500; }
+
+    td.profession { color: var(--muted); }
+
+    td.year { color: var(--muted); white-space: nowrap; }
+
+    td.archive a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      white-space: nowrap;
+    }
+
+    td.archive a:hover { color: var(--text); text-decoration: underline; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tag-film    { background: var(--tag-film-bg);    color: var(--tag-film); }
+    .tag-music   { background: var(--tag-music-bg);   color: var(--tag-music); }
+    .tag-photo   { background: var(--tag-photo-bg);   color: var(--tag-photo); }
+    .tag-design  { background: var(--tag-design-bg);  color: var(--tag-design); }
+    .tag-science { background: var(--tag-science-bg); color: var(--tag-science); }
+
+    .count {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.75rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      td.profession, td.year, thead th.year-col { display: none; }
+      h1 { font-size: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/">&larr; Bryan Leonard Thompson</a>
+  <h1>Apple Pro Profiles</h1>
+  <p class="subtitle">68 profiles from Apple&rsquo;s lost editorial archive &middot; 2006&ndash;2008</p>
+</header>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All <span id="count-all">68</span></button>
+  <button class="filter-btn" data-filter="film">Film &amp; Video</button>
+  <button class="filter-btn" data-filter="music">Music</button>
+  <button class="filter-btn" data-filter="photo">Photography</button>
+  <button class="filter-btn" data-filter="design">Design &amp; Art</button>
+  <button class="filter-btn" data-filter="science">Science</button>
+</div>
+
+<p class="count"><span id="visible-count">68</span> profiles</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Profession</th>
+      <th>Category</th>
+      <th class="year-col">Year</th>
+      <th>Archive</th>
+    </tr>
+  </thead>
+  <tbody id="table-body">
+    <tr data-cat="film"><td class="name">Hans Canosa</td><td class="profession">Filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/canosa/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Ed Burns</td><td class="profession">Filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/burns/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Arno Salters</td><td class="profession">Director (music videos)</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/salters/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Bryan Rowland, Doug Stewart &amp; Kelly Peterson</td><td class="profession">Visual-effects artists</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/rowland/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Tom Mattioli &amp; Kevin Contreras</td><td class="profession">Filmmakers</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/mattioli/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Jamie Houssian (The Collective)</td><td class="profession">Mountain-bike filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/houssian/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Davidson &amp; team</td><td class="profession">VFX team (claymation film)</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/film/davidson/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Leaping Waters (Jeff Gildrie)</td><td class="profession">Video editors</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/gildrie/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Dieter Obenaus</td><td class="profession">Filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/obenaus/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Luma Pictures</td><td class="profession">Visual-effects studio</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/film/lumapictures/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Petersen</td><td class="profession">Independent filmmakers</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/film/petersen/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Lava Studios</td><td class="profession">Video production house</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/lavastudios/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Tiger &amp; Tigress Productions</td><td class="profession">Production house</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/tiger_tigress/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Liz Witham</td><td class="profession">Documentary filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/witham/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Joe Cortina</td><td class="profession">Producer</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/video/cortina/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Mercedes-Benz USA (MBUSA)</td><td class="profession">In-house video studio</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/mbusa/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Coreaudiovisual</td><td class="profession">Photo/video team</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/coreaudiovisual/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">BHP Sport</td><td class="profession">Film crew (endurance racing)</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/bhpsport/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Digital Kitchen</td><td class="profession">Advertising/production agency</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/digital_kitchen/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Patrick Glaize (Le Sacre de l&rsquo;Homme)</td><td class="profession">Photographer/filmmaker</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/fr/pro/profiles/glaize/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">Blast Radius</td><td class="profession">Canadian advertising agency</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/pro/profiles/blastradius/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="film"><td class="name">D-Fuse</td><td class="profession">Audiovisual collective</td><td><span class="tag tag-film">Film/Video</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/pro/profiles/d-fuse2/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Deep Dish (Ali Shirazinia &amp; Sharam Tayebi)</td><td class="profession">DJ/producer duo</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/deepdish/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Takagi Masakatsu</td><td class="profession">Visual artist &amp; musician</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/takagi/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Jamie Lidell</td><td class="profession">Soul singer &amp; experimental musician</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/lidell/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Junkie XL (Tom Holkenborg)</td><td class="profession">Music producer &amp; remixer</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/junkiexl/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Felicia Collins</td><td class="profession">Guitarist (Late Show)</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/collins/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Justin Roberts</td><td class="profession">Children&rsquo;s musician</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/roberts/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Sasha</td><td class="profession">DJ</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/sasha/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Hypnogaja</td><td class="profession">Alternative rock band</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/hypnogaja/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Tom Salta</td><td class="profession">Composer (game soundtracks)</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/salta/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Rick Sheppard</td><td class="profession">Programmer/engineer for Dallas Austin</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/sheppard/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">America (Gerry Beckley &amp; Dewey Bunnell)</td><td class="profession">Folk-rock band</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/america/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">New York Guitar Festival</td><td class="profession">Music festival</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/music/guitarfestival/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Talmi &amp; Gross</td><td class="profession">Composers</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/music/talmiandgross/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Yehudi Wyner</td><td class="profession">Composer</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/music/wyner/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Janis</td><td class="profession">Musician with social mission</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/music/janis/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Erykah Badu</td><td class="profession">Soul/R&amp;B singer</td><td><span class="tag tag-music">Music</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/badu/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">T-Pain</td><td class="profession">Rapper/singer</td><td><span class="tag tag-music">Music</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/tpain/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">BT (Brian Transeau)</td><td class="profession">Composer &amp; electronic musician</td><td><span class="tag tag-music">Music</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/bt/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Brian Eno</td><td class="profession">Artist &amp; musician</td><td><span class="tag tag-music">Music</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/eno/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="music"><td class="name">Sonic Arts Research Centre</td><td class="profession">3D audio research facility</td><td><span class="tag tag-music">Music</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/sonicarts/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Magnum Photos / Magnum in Motion</td><td class="profession">Photo agency</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/magnum/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Michael Grecco</td><td class="profession">Photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/grecco/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Graham Watson</td><td class="profession">Sports photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/watson/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Neal Preston</td><td class="profession">Concert &amp; celebrity photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/preston/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Michael Elins</td><td class="profession">Photographer &amp; illustrator</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/elins/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Jody Dole</td><td class="profession">Commercial photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/dole/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Vincent Laforet</td><td class="profession">Photojournalist</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/laforet/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Craig Abaya</td><td class="profession">Concert photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/abaya/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Patrick Glaize</td><td class="profession">Photographer &amp; filmmaker</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/fr/pro/profiles/glaize/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Andy Earl</td><td class="profession">Music photographer</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/uk/pro/profiles/earl/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="photo"><td class="name">Michael Barmada</td><td class="profession">Geneticist &amp; bioinformatics researcher</td><td><span class="tag tag-photo">Photography</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/science/profiles/barmada/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Dwell Magazine</td><td class="profession">Modern living magazine</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/dwell/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Patrick Tighe</td><td class="profession">Architect</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/tighe/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Jeffrey Kovel (Skylab)</td><td class="profession">Architect</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/kovel/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Universal Everything (Matt Pyke)</td><td class="profession">Multidisciplinary studio</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/universaleverything/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">2x4, Inc.</td><td class="profession">Design firm</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/2x4/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Airside</td><td class="profession">Multidisciplinary creative studio</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/airside/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Tronic</td><td class="profession">Multimedia studio</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/tronic/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Stardust Studios</td><td class="profession">Motion-design studio</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/stardust/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Thomas A. Heinz</td><td class="profession">Architect &amp; Frank Lloyd Wright scholar</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/heinz/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Tony Borruso</td><td class="profession">Retail architect &amp; designer</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/borruso/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Zimmerman Agency (Curtis Zimmerman)</td><td class="profession">Advertising agency</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/zimmerman/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Chronicle Books</td><td class="profession">Publishing house</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/chroniclebooks/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Blast Radius</td><td class="profession">Canadian advertising agency</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/pro/profiles/blastradius/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">D-Fuse</td><td class="profession">Audiovisual collective</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2007</td><td class="archive"><a href="https://web.archive.org/web/2007*/https://www.apple.com/pro/profiles/d-fuse2/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="design"><td class="name">Digital Kitchen</td><td class="profession">Advertising/production agency</td><td><span class="tag tag-design">Design/Art</span></td><td class="year">2008</td><td class="archive"><a href="https://web.archive.org/web/2008*/https://www.apple.com/pro/profiles/digital_kitchen/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="science"><td class="name">Michael Barmada</td><td class="profession">Statistical geneticist</td><td><span class="tag tag-science">Science</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/science/profiles/barmada/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="science"><td class="name">Dr. Nouchine Hadjikhani</td><td class="profession">Radiologist &amp; neuroscientist</td><td><span class="tag tag-science">Science</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/science/profiles/hadjikhani/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+    <tr data-cat="science"><td class="name">Sonic Arts Research Centre</td><td class="profession">3D audio research facility</td><td><span class="tag tag-science">Science</span></td><td class="year">2006</td><td class="archive"><a href="https://web.archive.org/web/2006*/https://www.apple.com/pro/profiles/sonicarts/" target="_blank" rel="noopener">Wayback &rarr;</a></td></tr>
+  </tbody>
+</table>
+
+<footer>
+  Data recovered via ChatGPT and the Wayback Machine. Some archive links may be incomplete. If you know of a profile missing from this list, <a href="mailto:bryan@bryanleonardthompson.com">get in touch</a>.
+</footer>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('#table-body tr');
+  const countEl = document.getElementById('visible-count');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter;
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      let visible = 0;
+      rows.forEach(row => {
+        const show = filter === 'all' || row.dataset.cat === filter;
+        row.classList.toggle('hidden', !show);
+        if (show) visible++;
+      });
+      countEl.textContent = visible;
+    });
+  });
+</script>
+
+</body>
+</html>
