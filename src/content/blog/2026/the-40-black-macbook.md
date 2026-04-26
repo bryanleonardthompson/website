@@ -1,7 +1,7 @@
 ---
 title: "The 2006 Black MacBook"
 description: "A £40 Gumtree find with a dead battery. How a 2006 black MacBook became one of the most enjoyable computers I own."
-pubDatetime: 2026-04-27T12:00:00+01:00
+pubDatetime: 2026-04-27T12:00:00+00:00
 tags: ["apple", "macbook", "linux", "hardware", "retro"]
 ---
 
